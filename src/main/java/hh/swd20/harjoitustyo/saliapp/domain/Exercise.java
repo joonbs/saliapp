@@ -31,7 +31,7 @@ public class Exercise {
 	// relationships & Category constructor
 	@ManyToOne
 	// @JsonIgnoreProperties - one way to avoid infinite loop during JSON serialization/deserialization with bidirectional relationships
-	@JsonIgnoreProperties("categories")
+	@JsonIgnoreProperties("exercises")
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	
