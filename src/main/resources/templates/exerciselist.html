@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>SaliApp</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<div class="col-md-4" style="padding-left: 400px">
+	<h1>SaliApp</h1>
+	</div>
+	<div class="col-md-4">
+		<p th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]</p>
+	</div>
+
+</div>
+		<table class="table table-striped">
+		<tr>
+			<th>Exercise name</th>
+			<th>Weight</th>
+			<th>Sets</th>
+			<th>Reps</th>
+			<th>Date</th>
+			<th>Comment</th>
+			<th>Category</th>
+			<th sec:authorize="hasAuthority('ADMIN')"> </th>
+			<th sec:authorize="hasAnyAuthority('ADMIN', 'USER')"> </th>
+		</tr>
+		<tr th:each = "exercise : ${exercises}">
+			<td th:text="${exercise.name}"></td>
+			<td th:text="${exercise.weight}"></td>
+			<td th:text="${exercise.setAmount}"></td>
+			<td th:text="${exercise.repAmount}"></td>
+			<td th:text="${exercise.date}"></td>
+			<td th:text="${exercise.comment}"></td>
+			<td th:text="${exercise.category.name}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${exercise.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+			<td sec:authorize="hasAnyAuthority('ADMIN', 'USER')"><a th:href="@{/edit/{id}(id=${exercise.id})}" class="btn btn-xs btn-primary">Edit</a></td>
+		</tr>
+		</table>
+	<a href="/add" class="btn btn-success">Add new exercise</a>
+	
+		<div class="col-md-4" style="padding:20px 0">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign out" class="btn btn-sm btn-danger" />
+			</form>
+		</div>
+</body>
+</html>

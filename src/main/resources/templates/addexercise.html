@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+<head>
+	<title>Add exercise</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<h1>Add exercise</h1>
+		<div class="col-md-4">
+		<form th:object="${exercise}" th:action="@{save}" action="#" method="post">
+		
+		<label for="name">Name</label>
+		<input type="text" id="name" th:field="*{name}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="weight">Weight</label>
+		<input type="text" id="weight" th:field="*{weight}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="sets">Sets</label>
+		<input type="text" id="setAmount" th:field="*{setAmount}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+			
+		<label for="reps">Reps</label>
+		<input type="text" id="repAmount" th:field="*{repAmount}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="date">Date</label>
+		<input type="date" id="date" th:field="*{date}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="comment">Comment</label>
+		<input type="text" id="comment" th:field="*{comment}" class="form-control" />
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<label for="clist">Category</label>
+		<select id="clist" th:field="*{category}" class="form-control">
+			<option th:each="category: ${categories}" th:value="${category.categoryId}" th:text="${category.name}"></option>
+		</select>
+		<div style="clear: both; display: block; height: 10px;"></div>
+			
+			
+		<input type="submit" name="save" class="btn btn-success" value="Save"></input>
+		<input type="button" name="cancel" class="btn btn-danger" value="Cancel" onClick="window.location.href='/exerciselist';" /> 
+		</form>
+		</div>
+	</div>
+</body>
+</html>

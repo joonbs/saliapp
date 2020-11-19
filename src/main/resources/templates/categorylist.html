@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+<head>
+	<title>SaliApp</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+	<h1>Exercise category list</h1>
+		<table>
+		<tr>
+			<th>Category</th>
+		</tr>
+		<tr th:each = "category : ${categories}">
+			<td th:text="${category.name}"></td>
+		</tr>
+		</table>
+	<a href="/addcategory" class="button">Add category</a>
+</body>
+</html>
